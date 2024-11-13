@@ -57,8 +57,8 @@ form.addEventListener('submit', async event => {
 async function onLoadMore() {
   if (searchValue !== previousSearch) return;
   loadMore.disabled = true;
-  showLoaderMore();
   hideLoadMoreBtn();
+  showLoaderMore();
 
   page++;
 
@@ -68,8 +68,9 @@ async function onLoadMore() {
     const totalPages = Math.ceil(response.totalHits / 15);
 
     if (page >= totalPages) {
-      hideLoadMoreBtn();
       endOfRes();
+    } else {
+      showLoadMoreBtn();
     }
 
     const item = document.querySelector('.gallery-item');
@@ -85,7 +86,6 @@ async function onLoadMore() {
   } finally {
     hideLoader();
     hideLoaderMore();
-    showLoadMoreBtn();
     loadMore.disabled = false;
   }
 }
