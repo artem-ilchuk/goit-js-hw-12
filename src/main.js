@@ -68,6 +68,7 @@ async function onLoadMore() {
     const totalPages = Math.ceil(response.totalHits / 15);
 
     if (page >= totalPages) {
+      hideLoadMoreBtn();
       endOfRes();
     } else {
       showLoadMoreBtn();
